@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: white;
+    font-family: Arial, sans-serif;
+}
+
+.page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 48px auto;
+    background: #a51d20;
+    border: 2px solid #111;
+    border-radius: 25px;
+    overflow: hidden;
+    color: white;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding: 0 22px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-left {
+    width: 33%;
+}
+
+.nav-middle {
+    width: 34%;
+    text-align: center;
+}
+
+.nav-right {
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
+    padding: 28px 36px 40px;
+}
+
+.category {
+    margin-bottom: 28px;
+}
+
+.category-title {
+    font-size: 20px;
+    margin: 0 0 12px 2px;
+    font-weight: bold;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+/* ================= MENU CARD ================= */
+
+.menu-card {
+    background: #ddd;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+    color: black;
+    height: 150px;
+    position: relative;
+}
+
+/* รูปอาหาร */
+
+.menu-card img {
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    background: #eee;
+}
+
+/* ส่วนชื่ออาหาร */
+
+.menu-bottom {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+
+.menu-name {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 40px);
+}
+
+/* ================= ADD BUTTON ================= */
+
+.add-button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #38b800;
+    color: white;
+    font-size: 22px;
+    line-height: 22px;
+    cursor: pointer;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button:hover {
+    background: #269000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+
+    .menu-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .nav-middle {
+        width: 40%;
+    }
+
+    .nav-left {
+        width: 25%;
+    }
+
+    .nav-right {
+        width: 35%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .menu-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .navbar {
+        padding: 0 12px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
+
+    .nav-right {
+        gap: 8px;
+    }
+
+    .menu-card {
+        height: 135px;
+    }
+
+    .menu-card img {
+        height: 100px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .menu-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .menu-card {
+        height: 125px;
+    }
+
+    .menu-card img {
+        height: 90px;
+    }
+
+    .menu-name {
+        font-size: 11px;
+    }
+
+    .add-button {
+        width: 24px;
+        height: 24px;
+        font-size: 18px;
+    }
+}

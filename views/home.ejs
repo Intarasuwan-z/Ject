@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>หน้าหลัก</title>
+
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="navbar">
+
+        <div class="nav-left">
+            <a href="/">หน้าหลัก</a>
+        </div>
+
+        <div class="nav-middle">
+            <a href="/orders">ประวัติการสั่ง/รายการรอ</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="/cart">ตะกร้าอาหาร</a>
+            <a href="/cart">โต๊ะ 00</a>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+        <%
+            let categories = [];
+
+            menus.forEach(menu => {
+                if (!categories.includes(menu.category)) {
+                    categories.push(menu.category);
+                }
+            });
+        %>
+
+
+        <% categories.forEach(category => { %>
+
+            <div class="category">
+
+                <div class="category-title">
+                    <%= category %>
+                </div>
+
+
+                <div class="menu-list">
+
+                    <% menus.forEach(menu => { %>
+
+                        <% if (menu.category === category) { %>
+
+                            <div class="menu-card">
+
+                                <img
+                                    src="<%= menu.image %>"
+                                    alt="<%= menu.name %>"
+                                >
+
+                                <div class="menu-bottom">
+
+                                    <span class="menu-name">
+                                        <%= menu.name %>
+                                    </span>
+
+                                    <span class="menu-price">
+                                        <%= menu.price %> บาท
+                                    </span>
+
+                                    <form
+                                        action="/add-to-cart"
+                                        method="POST"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="menu_id"
+                                            value="<%= menu.menu_id %>"
+                                        >
+
+                                        <input
+                                            type="hidden"
+                                            name="quantity"
+                                            value="1"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="add-button"
+                                        >
+                                            +
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        <% } %>
+
+                    <% }) %>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
+
+</body>
+</html>
