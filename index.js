@@ -114,21 +114,77 @@ db.serialize(() => {
 
 app.get("/", (req, res) => {
 
-    db.all(
-        "SELECT * FROM menu ORDER BY menu_id",
-        [],
-        (err, menus) => {
+    const table = req.query.table || 1;
+
+    // โค้ดดึงเมนูของคุณเดิม
+    db.all("SELECT * FROM menu", [], (err, menus) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).send("Database Error");
+        }
+
+        res.render("home", {
+            menus: menus,
+            table: table
+        });
+
+    });
+
+});
+
+app.post("/add-to-cart", (req, res) => {
+
+    const menu_id = req.body.menu_id;
+    const quantity = Number(req.body.quantity);
+
+    const spicy = req.body.spicy || "";
+
+    let topping = req.body.topping || [];
+
+    // ถ้าเลือก topping แค่อันเดียว
+    if (!Array.isArray(topping)) {
+        topping = [topping];
+    }
+
+    console.log("menu_id:", menu_id);
+    console.log("quantity:", quantity);
+    console.log("spicy:", spicy);
+    console.log("topping:", topping);
+
+
+    // เอาข้อมูลตรงนี้ไปเพิ่มใน cart ของคุณ
+
+    res.redirect("/cart");
+});
+
+app.get("/addon", (req, res) => {
+
+    const menu_id = req.query.menu_id;
+    const table = req.query.table || 1;
+
+    db.get(
+        "SELECT * FROM menu WHERE menu_id = ?",
+        [menu_id],
+        (err, menu) => {
 
             if (err) {
                 console.log(err);
                 return res.status(500).send("Database Error");
             }
 
-            res.render("home", {
-                menus: menus
+            if (!menu) {
+                return res.status(404).send("ไม่พบเมนู");
+            }
+
+            res.render("addon", {
+                menu: menu,
+                table: table
             });
+
         }
     );
+
 });
 
 app.listen(PORT, () => {

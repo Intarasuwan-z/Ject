@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>เลือกเพิ่มเติม</title>
+
+    <link rel="stylesheet" href="/public/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="page">
+
+        <!-- NAVBAR -->
+
+        <div class="navbar">
+
+            <div class="nav-left">
+
+                <a href="/">
+                    หน้าหลัก
+                </a>
+
+            </div>
+
+
+            <div class="nav-middle">
+
+                <a href="/orders">
+                    ประวัติการสั่ง/รายการรอ
+                </a>
+
+            </div>
+
+
+            <div class="nav-right">
+
+                <a href="/cart">
+                    ตะกร้าอาหาร
+                </a>
+
+                <a href="/cart?table=<%= table %>">
+                    โต๊ะ <%= table %>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+            <h2>
+                <%= menu.name %>
+            </h2>
+
+
+            <img src="<%= menu.image %>" alt="<%= menu.name %>">
+
+
+            <p>
+                <%= menu.price %> บาท
+            </p>
+
+
+            <!-- FORM -->
+
+            <form action="/add-to-cart" method="POST">
+
+                <!-- ข้อมูลเมนู -->
+
+                <input type="hidden" name="menu_id" value="<%= menu.menu_id %>">
+
+
+                <!-- โต๊ะ -->
+
+                <input type="hidden" name="table" value="<%= table %>">
+
+
+                <!-- ความเผ็ด -->
+
+                <h3>
+                    ระดับความเผ็ด
+                </h3>
+
+                <label>
+
+                    <input type="radio" name="spicy" value="ไม่เผ็ด" checked>
+
+                    ไม่เผ็ด
+
+                </label>
+
+
+                <label>
+
+                    <input type="radio" name="spicy" value="เผ็ดน้อย">
+
+                    เผ็ดน้อย
+
+                </label>
+
+
+                <label>
+
+                    <input type="radio" name="spicy" value="เผ็ดกลาง">
+
+                    เผ็ดกลาง
+
+                </label>
+
+
+                <label>
+
+                    <input type="radio" name="spicy" value="เผ็ดมาก">
+
+                    เผ็ดมาก
+
+                </label>
+
+
+                <!-- TOPPING -->
+
+                <h3>
+                    Topping
+                </h3>
+
+
+                <label>
+
+                    <input type="checkbox" name="topping" value="ไข่ต้ม">
+
+                    เพิ่มไข่ต้ม +10
+
+                </label>
+
+
+                <label>
+
+                    <input type="checkbox" name="topping" value="เต้าหู้">
+
+                    เพิ่มเต้าหู้ +10
+
+                </label>
+
+
+                <label>
+
+                    <input type="checkbox" name="topping" value="หมู">
+
+                    เพิ่มหมู +10
+
+                </label>
+
+
+                <label>
+
+                    <input type="checkbox" name="topping" value="สาหร่าย">
+
+                    เพิ่มสาหร่าย +10
+
+                </label>
+
+
+                <label>
+
+                    <input type="checkbox" name="topping" value="ชุดหมู">
+
+                    เพิ่มชุดหมู +20
+
+                </label>
+
+
+                <!-- จำนวน -->
+
+                <h3>
+                    จำนวน
+                </h3>
+
+                <input type="number" name="quantity" value="1" min="1">
+
+
+                <br><br>
+
+
+                <button type="submit">
+
+                    เพิ่มลงตะกร้า
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
